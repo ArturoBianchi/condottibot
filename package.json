@@ -1,0 +1,23 @@
+{
+  "name": "condottibot",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000c\u0000o\u0000n\u0000d\u0000o\u0000t\u0000t\u0000i\u0000b\u0000o\u0000t\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ArturoBianchi/condottibot.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ArturoBianchi/condottibot/issues"
+  },
+  "homepage": "https://github.com/ArturoBianchi/condottibot#readme",
+  "dependencies": {
+    "discord.js": "^14.7.1"
+  }
+}
