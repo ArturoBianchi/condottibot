@@ -16,7 +16,7 @@ module.exports = class BotClient {
      */
     constructor(dir, addPlayer) {
         this.#commandsDir = dir;
-        this.#addPlayerFlag = addPlayer
+        this.#addPlayerFlag = addPlayer;
         this.#init();
     }
 
