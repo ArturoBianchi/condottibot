@@ -1,5 +1,4 @@
 import { REST, Routes } from 'discord.js';
-import {clientId, guildId, token}  from '../config/config.js';
 const fs = require('node:fs');
 
 const commands = [];
