@@ -42,25 +42,22 @@ client.player = new Player(client, {
     }
 });
 
-// Log in to Discord with your client's token
-client.login(token);
-
 //executing commands
 client.on(Events.InteractionCreate, async interaction => {
-	if (!interaction.isChatInputCommand()) return;
-
-	const command = interaction.client.commands.get(interaction.commandName);
-
-	if (!command) {
-		console.error(`No command matching ${interaction.commandName} was found.`);
-		return;
-	}
-
-	try {
-		await command.execute(interaction, client);
-	} catch (error) {
-		console.error(error);
-		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+	if (!interaction.isChatInputCommand()){
+		new Error('Not an allowed command');
+	}else{
+		const command = interaction.client.commands.get(interaction.commandName);
+		if (!command) {
+			console.error(`No command matching ${interaction.commandName} was found.`);
+		}else{
+			try {
+				await command.execute(interaction, client);
+			} catch (error) {
+				console.error(error);
+				await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+			}
+		}
 	}
 });
 
