@@ -60,7 +60,7 @@ module.exports = class BotClient {
      * @param client
      */
     #initCommandsCollection(client){
-        const commandsPath = path.join(__dirname, this.#commandsDir);
+        const commandsPath = path.join(__dirname, '..', this.#commandsDir);
         const commandFiles = fs.readdirSync(commandsPath).filter(file => file.endsWith('.js'));
 
         for (const file of commandFiles) {
@@ -95,7 +95,7 @@ module.exports = class BotClient {
     }
 
     addInteractionEventsForCommands(){
-        this.#originalClientObj.on(Events.InteractionCreate, this.#onInteractionEvent);
+        this.#originalClientObj.on(Events.Igit nteractionCreate, this.#onInteractionEvent);
     }
 
     /**

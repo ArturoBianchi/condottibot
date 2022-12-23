@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const {REST, Routes} = require("discord.js");
 const {token, clientId, guildId} = require("../../config/config.json");
+
 module.exports = class Deployer {
     /**
      *
@@ -15,7 +16,7 @@ module.exports = class Deployer {
 
             // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
             for (const file of commandFiles) {
-                const command = require(path + `/${file}`);
+                const command = require(`./../commands/${file}`);
                 commands.push(command.data.toJSON());
             }
 
@@ -41,6 +42,7 @@ module.exports = class Deployer {
             })();
         }catch(e){
             console.log("Error while deploying: " + e.message);
+            console.log("Trace: \n" + e.stack);
             toRet = false;
         }
 
