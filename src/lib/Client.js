@@ -1,5 +1,6 @@
 const {Client, GatewayIntentBits, Collection, Events} = require("discord.js");
 const {Player} = require("discord-player");
+const {token} = require("./../../config/config.json");
 const path = require("node:path");
 const fs = require("node:fs");
 
@@ -91,11 +92,17 @@ module.exports = class BotClient {
      * Login interface method
      */
     doLogin(){
-        this.#originalClientObj.login();
+        this.#originalClientObj.once(Events.ClientReady, c => {
+            console.log(`Ready! Logged in as ${c.user.tag}`);
+        });
+        this.#originalClientObj.login(token);
     }
 
+    /**
+     *
+     */
     addInteractionEventsForCommands(){
-        this.#originalClientObj.on(Events.Igit nteractionCreate, this.#onInteractionEvent);
+        this.#originalClientObj.on(Events.InteractionCreate, this.#onInteractionEvent.bind(this));
     }
 
     /**
@@ -112,7 +119,7 @@ module.exports = class BotClient {
                 console.error(`No command matching ${interaction.commandName} was found.`);
             }else{
                 try {
-                    await command.execute(interaction, client);
+                    await command.execute(interaction, this.#originalClientObj);
                 } catch (error) {
                     console.error(error);
                     await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
