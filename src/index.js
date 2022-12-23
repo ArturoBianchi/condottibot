@@ -5,9 +5,15 @@
 const fs = require('node:fs');
 const path = require('node:path');
 const {token} = require("./../config/config.json");
-const { Client, Collection, Events, GatewayIntentBits} = require('discord.js');
-const client = new Client({
-    "intents": [GatewayIntentBits.Guilds]
+const { Client, Collection, Events, GatewayIntentBits, VoiceChannel} = require('discord.js');
+const { Player } = require("discord-player");
+const client = new Client({ 
+    intents: [GatewayIntentBits.Guilds,
+                GatewayIntentBits.GuildMessages,
+                GatewayIntentBits.MessageContent,
+                GatewayIntentBits.GuildMembers,
+                GatewayIntentBits.GuildVoiceStates,
+                GatewayIntentBits.GuildMessages]
 });
 
 // When the client is ready, run this code (only once)
@@ -33,6 +39,14 @@ for (const file of commandFiles) {
 	}
 }
 
+//pucching
+client.player = new Player(client, {
+    ytdlOptions: {
+        quality: "highestaudio",
+        highWaterMark: 1 << 25
+    }
+});
+
 // Log in to Discord with your client's token
 client.login(token);
 
@@ -49,7 +63,7 @@ client.on(Events.InteractionCreate, async interaction => {
 	}
 
 	try {
-		await command.execute(interaction);
+		await command.execute(interaction, client);
 	} catch (error) {
 		console.error(error);
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
