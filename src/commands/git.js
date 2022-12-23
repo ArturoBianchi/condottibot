@@ -17,7 +17,7 @@ module.exports = {
             guildId: voiceChannel.guild.id,
             adapterCreator: voiceChannel.guild.voiceAdapterCreator,
         });
-        const resource = createAudioResource("condox.mp3");
+        const resource = createAudioResource("C:\\Git\\condottibot\\src\\commands\\condox.mp3");
         // Play "track.mp3" across voice connections
         player.play(resource);
         connection.subscribe(player);
