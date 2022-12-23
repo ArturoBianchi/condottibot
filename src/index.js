@@ -6,7 +6,7 @@ const fs = require('node:fs');
 const path = require('node:path');
 const {token} = require("./../config/config.json");
 const { Client, Collection, Events, GatewayIntentBits, VoiceChannel} = require('discord.js');
-//const { Player } = require("discord-player");
+const { Player } = require("discord-player");
 const client = new Client({ 
     intents: [GatewayIntentBits.Guilds,
                 GatewayIntentBits.GuildMessages,
@@ -40,12 +40,12 @@ for (const file of commandFiles) {
 }
 
 //pucching
-/*client.player = new Player(client, {
+client.player = new Player(client, {
     ytdlOptions: {
         quality: "highestaudio",
         highWaterMark: 1 << 25
     }
-});*/
+});
 
 // Log in to Discord with your client's token
 client.login(token);
