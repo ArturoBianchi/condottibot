@@ -4,17 +4,12 @@
  */
 const fs = require('node:fs');
 const path = require('node:path');
-const {token} = require("./../config/config.json");
+const {token} = require("../config/config.js");
 const { Client, Collection, Events, GatewayIntentBits} = require('discord.js');
 const client = new Client({
     "intents": [GatewayIntentBits.Guilds]
 });
 
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, function(clientsEventObj){
-    console.log('Ready!  Logged in as ' + clientsEventObj.user.tag);
-});
 
 //creazione collezione comandi
 client.commands = new Collection();
@@ -33,9 +28,11 @@ for (const file of commandFiles) {
 	}
 }
 
-// Log in to Discord with your client's token
-client.login(token);
-
+// When the client is ready, run this code (only once)
+// We use 'c' for the event parameter to keep it separate from the already defined 'client'
+client.once(Events.ClientReady, function(clientsEventObj){
+	console.log('Ready!  Logged in as ' + clientsEventObj.user.tag);
+});
 
 //executing commands
 client.on(Events.InteractionCreate, async interaction => {
@@ -55,6 +52,9 @@ client.on(Events.InteractionCreate, async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+
+// Log in to Discord with your client's token
+client.login(token);
 
 
 
