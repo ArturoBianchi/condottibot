@@ -21,6 +21,6 @@ module.exports = {
         // Play "track.mp3" across voice connections
         player.play(resource);
         connection.subscribe(player);
-		await interaction.reply('OIOI');
+		await interaction.reply('Condo esegue :monkey: , Condo ripete :monkey:. Condo un po triste :Sadge: ');
 	},
 }

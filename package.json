@@ -2,8 +2,7 @@
   "name": "condottibot",
   "version": "1.0.0",
   "description": "��#\u0000 \u0000c\u0000o\u0000n\u0000d\u0000o\u0000t\u0000t\u0000i\u0000b\u0000o\u0000t\u0000\r\u0000 \u0000",
-  "main": "index.js",
-  "type": "module",
+  "main": "main.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,7 +17,13 @@
     "url": "https://github.com/ArturoBianchi/condottibot/issues"
   },
   "homepage": "https://github.com/ArturoBianchi/condottibot#readme",
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "dependencies": {
+    "@babel/standalone": "^7.20.10",
     "@discordjs/opus": "^0.8.0",
     "@discordjs/voice": "^0.14.0",
     "discord-player": "^5.3.2",
