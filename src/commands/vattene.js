@@ -4,29 +4,23 @@ const { joinVoiceChannel } = require('@discordjs/voice');
 const { createAudioPlayer } = require('@discordjs/voice');
 const { createAudioResource, StreamType } = require('@discordjs/voice');
 const { NoSubscriberBehavior } = require('@discordjs/voice');
-const path = require("node:path");
 
 module.exports = {
-	data: new SlashCommandBuilder()
-		.setName('git')
-		.setDescription('Oggi impareremo...'),
+    data: new SlashCommandBuilder()
+		.setName('vattene')
+		.setDescription('Vo via, vo via...'),
 	async execute(interaction, client) {
         const voiceChannel = interaction.member.voice.channel;
-        const player = createAudioPlayer();
         const connection = joinVoiceChannel({
             channelId: voiceChannel.id,
             guildId: voiceChannel.guild.id,
             adapterCreator: voiceChannel.guild.voiceAdapterCreator,
         });
+        connection.destroy();
+        await interaction.reply('Non stavo facendo nullaaa');
 
-        var absolutePath = path.resolve("./commands/music/condox.mp3");
-        console.log(absolutePath);
-        const resource = createAudioResource(absolutePath);
-        
-        // Play "track.mp3" across voice connections
-        player.play(resource);
-        connection.subscribe(player);
-        
-		await interaction.reply('Condo esegue :monkey: , Condo ripete :monkey:. Condo un po triste :crying_cat_face: ');
-	},
+    },
+
+
+
 }
