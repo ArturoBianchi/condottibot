@@ -16,11 +16,6 @@ const client = new Client({
                 GatewayIntentBits.GuildMessages]
 });
 
-// When the client is ready, run this code (only once)
-// We use 'c' for the event parameter to keep it separate from the already defined 'client'
-client.once(Events.ClientReady, function(clientsEventObj){
-    console.log('Ready!  Logged in as ' + clientsEventObj.user.tag);
-});
 
 //creazione collezione comandi
 client.commands = new Collection();
@@ -50,7 +45,6 @@ client.player = new Player(client, {
 // Log in to Discord with your client's token
 client.login(token);
 
-
 //executing commands
 client.on(Events.InteractionCreate, async interaction => {
 	if (!interaction.isChatInputCommand()) return;
@@ -69,6 +63,9 @@ client.on(Events.InteractionCreate, async interaction => {
 		await interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
 	}
 });
+
+// Log in to Discord with your client's token
+client.login(token);
 
 
 
