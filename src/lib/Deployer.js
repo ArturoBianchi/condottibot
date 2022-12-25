@@ -11,8 +11,9 @@ module.exports = class Deployer {
         let toRet = true;
         try{
             const commands = [];
+            console.log(__dirname);
             // Grab all the command files from the commands directory you created earlier
-            const commandFiles = fs.readdirSync(path).filter(file => file.endsWith('.js'));
+            const commandFiles = fs.readdirSync(__dirname + "/../commands").filter(file => file.endsWith('.js'));
 
             // Grab the SlashCommandBuilder#toJSON() output of each command's data for deployment
             for (const file of commandFiles) {
