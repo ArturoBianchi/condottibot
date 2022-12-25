@@ -8,7 +8,7 @@ const path = require("node:path");
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('git')
+		.setName('gitz')
 		.setDescription('Oggi impareremo...'),
 	async execute(interaction, client) {
         const voiceChannel = interaction.member.voice.channel;
@@ -19,7 +19,7 @@ module.exports = {
             adapterCreator: voiceChannel.guild.voiceAdapterCreator,
         });
 
-        var absolutePath = path.resolve("./commands/music/condox.mp3");
+        var absolutePath = path.resolve(__dirname + "/../commands/music/condox.mp3");
         console.log(absolutePath);
         const resource = createAudioResource(absolutePath);
         
