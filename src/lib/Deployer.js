@@ -1,6 +1,7 @@
 const fs = require("node:fs");
 const {REST, Routes} = require("discord.js");
-const {token, clientId, guildId} = require("../../config/config.json");
+const {clientId, guildId} = require("../../config/config.json");
+const dotenv = require("dotenv");
 
 module.exports = class Deployer {
     /**
@@ -21,8 +22,10 @@ module.exports = class Deployer {
                 commands.push(command.data.toJSON());
             }
 
+            dotenv.config({path: __dirname + "/../../token.env"});
+            console.log(process.env.TOKEN);
             // Construct and prepare an instance of the REST module
-            const rest = new REST({ version: '10' }).setToken(token);
+            const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
 
             // and deploy your commands!
             (async () => {

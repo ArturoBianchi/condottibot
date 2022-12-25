@@ -1,6 +1,5 @@
 const {Client, GatewayIntentBits, Collection, Events} = require("discord.js");
 const {Player} = require("discord-player");
-const {token} = require("./../../config/config.json");
 const path = require("node:path");
 const fs = require("node:fs");
 const dotenv = require('dotenv');
@@ -96,7 +95,9 @@ module.exports = class BotClient {
         this.#originalClientObj.once(Events.ClientReady, c => {
             console.log(`Ready! Logged in as ${c.user.tag}`);
         });
-        dotenv.config();
+
+        dotenv.config({path: __dirname + "/../../token.env"});
+        console.log(process.env.TOKEN);
         this.#originalClientObj.login(process.env.TOKEN);
     }
 
