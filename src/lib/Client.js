@@ -96,7 +96,7 @@ module.exports = class BotClient {
             console.log(`Ready! Logged in as ${c.user.tag}`);
         });
 
-        dotenv.config({path: __dirname + "/../../token.env"});
+        //dotenv.config({path: __dirname + "/../../token.env"});
         console.log(process.env.TOKEN);
         this.#originalClientObj.login(process.env.TOKEN);
     }
