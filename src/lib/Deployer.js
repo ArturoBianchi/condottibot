@@ -22,7 +22,7 @@ module.exports = class Deployer {
                 commands.push(command.data.toJSON());
             }
 
-            dotenv.config({path: __dirname + "/../../token.env"});
+            //dotenv.config({path: __dirname + "/../../token.env"});
             console.log(process.env.TOKEN);
             // Construct and prepare an instance of the REST module
             const rest = new REST({ version: '10' }).setToken(process.env.TOKEN);
